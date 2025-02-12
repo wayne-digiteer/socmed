@@ -1,0 +1,37 @@
+- flash.each do |type, message|
+  div class="fixed top-4 right-4 z-50 max-w-sm p-4 rounded-lg shadow-lg border animate-fade-in-down #{type == 'notice' ? 'bg-green-100 border-green-200' : 'bg-red-100 border-red-200'}" id="flash-#{type}" data-flash-type="#{type}"
+    div class="flex items-center"
+      - if type == 'notice'
+        svg.w-5.h-5.text-green-700 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+          path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"
+      - else
+        svg.w-5.h-5.text-red-700 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+          path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"
+      div class="ml-3 text-sm font-normal #{type == 'notice' ? 'text-green-700' : 'text-red-700'}"
+        = message
+      button type="button" class="ml-1 text-sm text-gray-500 hover:text-gray-700 focus:outline-none" aria-label="Close" data-dismiss="#flash-#{type}"
+        svg.w-5.h-5 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+          path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"
+
+  / JavaScript for auto-dismiss and close button
+  javascript:
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(function() {
+        const flash = document.querySelector('[data-flash-type="notice"], [data-flash-type="alert"]');
+        if (flash) {
+          flash.remove();
+        }
+      }, 5000);
+
+      // Close button functionality
+      const closeButtons = document.querySelectorAll('[data-dismiss]');
+      closeButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+          console.log("Clicked!")
+          const flashMessage = document.querySelector(button.getAttribute('data-dismiss'));
+          if (flashMessage) {
+            flashMessage.remove();
+          }
+        });
+      });
+    });

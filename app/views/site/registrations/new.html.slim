@@ -1,0 +1,37 @@
+.bg-gray-100.min-h-screen.flex.items-center.justify-center.w-full.sm:max-w-md
+  .bg-white.shadow-lg.rounded-lg.p-8.w-full.flex.items-center.justify-center.flex-col.mx-4
+    .text-center.mb-6
+      h2.text-3xl.font-bold.text-gray-900.tracking-tighter Create an Account
+
+    div class="bg-white w-full"
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "space-y-6" }) do |f|
+        - if resource.errors.any?
+          div class="bg-red-50 text-red-500 p-4 rounded-lg mb-6"
+            h2 class="text-md font-semibold" = "#{pluralize(resource.errors.count, "error")} prohibited this registration from being saved:"
+            ul class="list-disc pl-5 mt-2"
+              - resource.errors.each do |error|
+                li = error.full_message
+
+        div class="space-y-2"
+          = f.label :email, class: "block text-sm font-medium text-gray-700"
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 p-2 text-sm block w-full rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent border border-1 border-zinc-200"
+
+        div class="space-y-2"
+          = f.label :username, class: "block text-sm font-medium text-gray-700"
+          = f.text_field :username, autocomplete: "username", class: "mt-1 p-2 text-sm block w-full rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent border border-1 border-zinc-200"
+
+        div class="space-y-2"
+          = f.label :password, class: "block text-sm font-medium text-gray-700"
+          - if @minimum_password_length
+            em class="text-sm text-gray-500" = "(#{@minimum_password_length} characters minimum)"
+          = f.password_field :password, autocomplete: "new-password", class: "mt-1 p-2 text-sm block w-full rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent border border-1 border-zinc-200"
+
+        div class="space-y-2"
+          = f.label :password_confirmation, class: "block text-sm font-medium text-gray-700"
+          = f.password_field :password_confirmation, autocomplete: "new-password", class: "mt-1 p-2 text-sm block w-full rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent border border-1 border-zinc-200"
+
+        div class="mt-6"
+          = f.submit "Sign up", class: "w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium py-2 px-4 rounded-md transition duration-150 ease-in-out"
+
+      div onclick="this.querySelector('a').click();" class="group cursor-pointer flex flex-row justify-center items-center mt-2 w-full text-zinc-900 bg-white border border-zinc-300 hover:text-white hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 font-medium py-2 px-4 rounded-md transition duration-150 ease-in-out"
+        = render "devise/shared/links"
