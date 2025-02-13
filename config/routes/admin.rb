@@ -2,9 +2,9 @@
 devise_for :users,
   path: "admin",
   controllers: {
-    sessions: "admin/sessions",
-    registrations: "admin/registrations",
-    passwords: "admin/passwords"
+    sessions: "admin/devise/sessions",
+    registrations: "admin/devise/registrations",
+    passwords: "admin/devise/passwords"
   },
   path_names: {
     sign_in: "/login",

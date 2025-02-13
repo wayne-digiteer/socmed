@@ -1,0 +1,34 @@
+= form_with(model: post) do |form|
+  - if post.errors.any?
+    div style="color: red"
+      h2 = "#{pluralize(post.errors.count, "error")} prohibited this post from being saved:"
+      ul
+        - post.errors.each do |error|
+          li = error.full_message
+
+  div
+    = form.label :title, style: "display: block"
+    = form.text_field :title
+
+  div
+    = form.label :content, style: "display: block"
+    = form.textarea :content
+
+  div
+    = form.label :active, style: "display: block"
+    = form.checkbox :active
+
+  div
+    = form.label :featured, style: "display: block"
+    = form.checkbox :featured
+
+  div
+    = form.label :published_date, style: "display: block"
+    = form.datetime_field :published_date
+
+  div
+    = form.label :user_id, style: "display: block"
+    = form.text_field :user_id
+
+  div
+    = form.submit

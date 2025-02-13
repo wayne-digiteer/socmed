@@ -16,6 +16,13 @@
   / JavaScript for auto-dismiss and close button
   javascript:
     document.addEventListener('click', function(event) {
+      setTimeout(function() {
+        const flash = document.querySelector('[data-flash-type="notice"], [data-flash-type="alert"]');
+        if (flash) {
+          flash.remove();
+        }
+      }, 5000);
+
       const button = event.target.closest('[data-dismiss]');
       if (button) {
         const flashMessage = document.getElementById(button.getAttribute('data-dismiss').substring(1));
