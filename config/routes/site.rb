@@ -20,4 +20,5 @@ devise_for :customers,
 scope module: :site, path: "/" do
   resources :posts, controller: "/site/posts", as: :posts
   root "posts#index", as: :root
+  resources :customers, only: [ :show ], path: "u"
 end
