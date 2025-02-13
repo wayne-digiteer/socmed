@@ -5,13 +5,13 @@ one:
   content: MyText
   active: false
   featured: false
-  published_date: 2025-02-13 10:03:10
-  user: one
+  published_date: 2025-02-13 11:46:26
+  customer: one
 
 two:
   title: MyString
   content: MyText
   active: false
   featured: false
-  published_date: 2025-02-13 10:03:10
-  user: two
+  published_date: 2025-02-13 11:46:26
+  customer: two

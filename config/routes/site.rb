@@ -17,7 +17,7 @@ devise_for :customers,
     password_expired: "/password-expired"
   }
 
-namespace :site, path: "/" do
-  resources :post
-  root to: "posts#index"
+scope module: :site, path: "/" do
+  resources :posts, controller: "/site/posts", as: :posts
+  root "posts#index", as: :root
 end

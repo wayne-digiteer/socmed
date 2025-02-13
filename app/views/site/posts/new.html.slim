@@ -1,8 +1,13 @@
-h1 New post
+.bg-zinc-50.rounded-2xl.border.border-zinc-300.mt-4
+  .grid.grid-cols-8.gap-4.items-center.p-4.bg-gradient-to-r.from-blue-400.to-purple-400.rounded-t-2xl
+    div.col-span-2
+      = link_to "Cancel", posts_path, class: "text-white hover:text-purple-200 font-semibold py-2 px-4 rounded-2xl bg-none"
+    h1.font-bold.text-center.col-span-4.bg-clip-text.text-transparent.text-white New post
+    span.col-span-2
 
-== render "form", post: @post
+  hr.border-zinc-300
 
-br
+  .p-4
+    == render "form", post: @post
 
-div
-  = link_to "Back to posts", posts_path
+  br

@@ -16,10 +16,10 @@ class PostsTest < ApplicationSystemTestCase
 
     check "Active" if @post.active
     fill_in "Content", with: @post.content
+    fill_in "Customer", with: @post.customer_id
     check "Featured" if @post.featured
     fill_in "Published date", with: @post.published_date
     fill_in "Title", with: @post.title
-    fill_in "User", with: @post.user_id
     click_on "Create Post"
 
     assert_text "Post was successfully created"
@@ -32,10 +32,10 @@ class PostsTest < ApplicationSystemTestCase
 
     check "Active" if @post.active
     fill_in "Content", with: @post.content
+    fill_in "Customer", with: @post.customer_id
     check "Featured" if @post.featured
     fill_in "Published date", with: @post.published_date.to_s
     fill_in "Title", with: @post.title
-    fill_in "User", with: @post.user_id
     click_on "Update Post"
 
     assert_text "Post was successfully updated"

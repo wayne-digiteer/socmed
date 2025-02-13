@@ -1,10 +1,8 @@
-p style="color: green" = notice
+.space-y-6.max-w-lg.w-full.min-w-xs.px-4.mt-6
+  == render @post
 
-== render @post
-
-div
-  => link_to "Edit this post", edit_post_path(@post)
-  '|
-  =< link_to "Back to posts", posts_path
-
-  = button_to "Destroy this post", @post, method: :delete
+.mt-4.flex.justify-start.
+  = link_to posts_path, class: "rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-200 transition-colors duration-200 inline-flex items-center" do
+    svg.w-4.h-4.mr-2 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+      path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"
+    | Back to posts

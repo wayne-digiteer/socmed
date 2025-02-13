@@ -1,34 +1,30 @@
-= form_with(model: post) do |form|
+= form_with(model: post, class: "max-w-lg mx-auto p-2 space-y-6") do |form|
   - if post.errors.any?
-    div style="color: red"
-      h2 = "#{pluralize(post.errors.count, "error")} prohibited this post from being saved:"
-      ul
+    div class="bg-red-50 text-red-500 p-4 rounded-lg mb-6"
+      h2 class="text-md font-semibold" = "#{pluralize(post.errors.count, "error")} prohibited this post from being saved:"
+      ul class="list-disc pl-5 mt-2"
         - post.errors.each do |error|
           li = error.full_message
 
-  div
-    = form.label :title, style: "display: block"
-    = form.text_field :title
+  div class="space-y-2"
+    = form.label :title, class: "block text-sm font-medium text-gray-700"
+    = form.text_field :title, class: "mt-1 p-2 text-sm font-semibold block w-full rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent border border-1 border-zinc-200", placeholder: "What's up, Digifam?"
 
-  div
-    = form.label :content, style: "display: block"
-    = form.textarea :content
+  div class="space-y-2"
+    = form.label :content, class: "block text-sm font-medium text-gray-700"
+    = form.text_area :content, class: "mt-1 p-2 text-sm font-semibold block w-full rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent border border-1 border-zinc-200", placeholder: "Step out, post lang saglit.", rows: 4
 
-  div
-    = form.label :active, style: "display: block"
-    = form.checkbox :active
+  div class="flex items-center gap-2"
+    = form.check_box :featured, class: "rounded border-gray-300 text-purple-600 focus:ring-purple-600"
+    = form.label :featured, class: "text-sm font-medium text-gray-700"
 
-  div
-    = form.label :featured, style: "display: block"
-    = form.checkbox :featured
+  div class="flex items-center gap-2"
+    = form.check_box :active, class: "rounded border-gray-300 text-purple-600 focus:ring-purple-600"
+    = form.label :active, class: "text-sm font-medium text-gray-700"
 
-  div
-    = form.label :published_date, style: "display: block"
-    = form.datetime_field :published_date
+  div class="space-y-2"
+    = form.label :published_date, class: "block text-sm font-medium text-gray-700"
+    = form.datetime_field :published_date, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent"
 
-  div
-    = form.label :user_id, style: "display: block"
-    = form.text_field :user_id
-
-  div
-    = form.submit
+  div class="mt-6"
+    = form.submit class: "w-full bg-gradient-to-r from-blue-400 to-purple-400 hover:from-blue-500 hover:to-purple-500 text-white font-medium py-2 px-4 rounded-md transition duration-150 ease-in-out"

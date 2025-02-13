@@ -1,11 +1,12 @@
-p style="color: green" = notice
+/ p class="text-green-500" = notice
 
-h1 Posts
+/ Tabs
+.nav.tabs class="flex flex-row justify-around items-center border-b border-gray-300 mt-2 mb-6 w-full max-w-md"
+  = link_to "For You", posts_path(tab: "for_you"), class: "px-5 py-2 font-semibold border-b-2 border-transparent hover:border-blue-500 hover:text-blue-500 #{'border-blue-500 text-blue-500' if params[:tab] == 'for_you'} #{"text-gray-800" unless params[:tab] == 'for_you'}"
+  = link_to "Featured", posts_path(tab: "featured"), class: "px-5 py-2 font-semibold border-b-2 border-transparent hover:border-blue-500 hover:text-blue-500 #{'border-blue-500 text-blue-500' if params[:tab] == 'featured'} #{"text-gray-800" unless params[:tab] == 'featured'}"
 
-#posts
+/ Posts
+#posts class="max-w-lg w-full min-w-xs px-4 space-y-6"
   - @posts.each do |post|
-    == render post
-    p
-      = link_to "Show this post", post
-
-= link_to "New post", new_post_path
+    .space-y-6
+      == render post

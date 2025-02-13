@@ -6,7 +6,7 @@ class CreatePosts < ActiveRecord::Migration[8.0]
       t.boolean :active
       t.boolean :featured
       t.datetime :published_date
-      t.references :user, null: false, foreign_key: true
+      t.references :customer, null: false, foreign_key: true
 
       t.timestamps
     end

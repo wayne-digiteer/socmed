@@ -19,5 +19,6 @@ html
     = javascript_importmap_tags
   body.flex.flex-col.justify-center.items-center.bg-gray-100.text-gray-900.space-y-1.pb-8
     header.w-full.m-0
+      == render "components/navbar"
       = render "components/alerts"
     = yield
