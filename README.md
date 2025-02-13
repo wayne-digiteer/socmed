@@ -25,9 +25,10 @@ Things you may want to cover:
 
 # TASKS
 
-- Change DB from SQLite to PostgreSQL
-- Scaffold Post Resource
-- Reimplement UI Designs from Old SocMed App
-- Scaffold Comment Resource
-- Scaffold Like Controller
-- Study Turbo-Rails
+[x] Change DB from SQLite to PostgreSQL
+[x] Scaffold Post Resource
+[] Create Edit Profile Page
+[] Reimplement UI Designs from Old SocMed App
+[] Scaffold Comment Resource
+[] Scaffold Like Controller
+[] Study Turbo-Rails

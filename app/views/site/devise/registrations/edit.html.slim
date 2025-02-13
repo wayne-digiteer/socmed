@@ -1,42 +1,53 @@
-h2
-  | Edit 
-  = resource_name.to_s.humanize
-= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-    div
-      | Currently waiting confirmation for: 
-      = resource.unconfirmed_email
-  .field
-    = f.label :password
-    i
-      | (leave blank if you don't want to change it)
-    br
-    = f.password_field :password, autocomplete: "new-password"
-    - if @minimum_password_length
-      br
-      em
-        = @minimum_password_length
-        |  characters minimum
-  .field
-    = f.label :password_confirmation
-    br
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .field
-    = f.label :current_password
-    i
-      | (we need your current password to confirm your changes)
-    br
-    = f.password_field :current_password, autocomplete: "current-password"
-  .actions
-    = f.submit "Update"
-h3
-  | Cancel my account
-div
-  | Unhappy? 
-  = button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete
-= link_to "Back", :back
+.bg-zinc-50.rounded-2xl.border.border-zinc-300.mt-4
+  .grid.grid-cols-8.gap-4.items-center.p-4.bg-gradient-to-r.from-blue-600.to-purple-600.rounded-t-2xl
+    div.col-span-2
+      = link_to "Back", :back, class: "text-white hover:text-purple-200 font-semibold py-2 px-4 rounded-2xl bg-none"
+    h2.font-bold.text-center.col-span-4.text-white Edit Profile
+    span.col-span-2
+
+  hr.border-zinc-300
+
+  div class="sm:mx-auto sm:w-full sm:max-w-md"
+    div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10"
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "space-y-6" }) do |f|
+        = render "devise/shared/error_messages", resource: resource
+
+        div class="space-y-2"
+          = f.label :email, class: "block text-sm font-medium text-gray-700"
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 p-2 text-sm block w-full rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent border border-1 border-zinc-200"
+
+        - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+          div class="bg-yellow-50 p-4 rounded-md"
+            p class="text-yellow-700" = "Currently waiting confirmation for: #{resource.unconfirmed_email}"
+
+        div class="space-y-2"
+          = f.label :username, class: "block text-sm font-medium text-gray-700"
+          = f.text_field :username, autocomplete: "username", class: "mt-1 p-2 text-sm block w-full rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent border border-1 border-zinc-200"
+
+        div class="space-y-2"
+          = f.label :password, class: "block text-sm font-medium text-gray-700"
+          = f.password_field :password, autocomplete: "new-password", class: "mt-1 p-2 text-sm block w-full rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent border border-1 border-zinc-200"
+          i class="text-sm text-gray-500" = "(leave blank if you don't want to change it)"
+          - if @minimum_password_length
+            em class="block text-sm text-gray-500" = "(#{@minimum_password_length} characters minimum)"
+
+        div class="space-y-2"
+          = f.label :password_confirmation, class: "block text-sm font-medium text-gray-700"
+          = f.password_field :password_confirmation, autocomplete: "new-password", class: "mt-1 p-2 text-sm block w-full rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent border border-1 border-zinc-200"
+
+        div class="space-y-2"
+          = f.label :current_password, class: "block text-sm font-medium text-gray-700"
+          = f.password_field :current_password, autocomplete: "current-password", class: "mt-1 p-2 text-sm block w-full rounded-md border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent border border-1 border-zinc-200"
+          i class="text-sm text-gray-500" = "(we need your current password to confirm your changes)"
+
+        div class="mt-6"
+          = f.submit "Update", class: "w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium py-2 px-4 rounded-md transition duration-150 ease-in-out"
+
+      .mt-8.border-t.border-gray-200.pt-6
+        h3.text-lg.font-medium.text-gray-900 Cancel my account
+        p.mt-1.text-sm.text-gray-500 Unhappy with your account?
+        div.mt-4
+          = button_to "Cancel my account", registration_path(resource_name),
+            data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" },
+            method: :delete,
+            class: "inline-flex items-center px-4 py-2 border border-red-300 text-sm font-medium rounded-md text-red-700 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"

@@ -21,23 +21,23 @@ nav.bg-zinc-100.p-4.w-full.border.border-b.border-zinc-300
               path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM12 14c-4.41 0-8 2.24-8 5v2h16v-2c0-2.76-3.59-5-8-5z")
             span class="hidden md:inline" Account
           .absolute.right-full.top-0.flex.flex-col.justify-center.items-start.gap-2.bg-white.rounded-xl.py-2.border.border-zinc-300.hidden.group-hover:flex
-            / - if current_user.isAdmin && request.path != admin_dashboard_path
-            /   = link_to admin_dashboard_path, class: "flex flex-row justify-start items-center gap-2 text-zinc-600 text-sm font-semibold cursor-pointer pl-3 pr-4" do
-            /     svg.w-4.h-4 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-            /       path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM12 14c-4.41 0-8 2.24-8 5v2h16v-2c0-2.76-3.59-5-8-5z")
-            /     | Admin
-            /   hr.border.border-zinc-200.w-full.border-0.25
-            / - elsif current_user.isAdmin && request.path == admin_dashboard_path
+            - if user_signed_in?
+              = link_to "/posts", class: "flex flex-row justify-start items-center gap-2 text-zinc-600 text-sm font-semibold cursor-pointer pl-3 pr-4" do
+                svg.w-4.h-4 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                  path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM12 14c-4.41 0-8 2.24-8 5v2h16v-2c0-2.76-3.59-5-8-5z")
+                | Admin
+              hr.border.border-zinc-200.w-full.border-0.25
+            / - elsif customer_signed_in? && request.path == "/posts"
             /   = link_to root_path, class: "flex flex-row justify-start items-center gap-2 text-zinc-600 text-sm font-semibold cursor-pointer pl-3 pr-4" do
             /     svg.w-4.h-4 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
             /       path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM12 14c-4.41 0-8 2.24-8 5v2h16v-2c0-2.76-3.59-5-8-5z")
             /     | User
-            /   hr.border.border-zinc-200.w-full.border-0.25
-            / = link_to user_path(current_user), class: "flex flex-row justify-start items-center gap-2 text-zinc-600 text-sm font-semibold cursor-pointer pl-3 pr-4" do
-            /   svg.w-4.h-4 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-            /     path d="M17.263 2.177a1.75 1.75 0 0 1 2.474 0l2.586 2.586a1.75 1.75 0 0 1 0 2.474L19.53 10.03l-.012.013L8.69 20.378a1.75 1.75 0 0 1-.699.409l-5.523 1.68a.75.75 0 0 1-.935-.935l1.673-5.5a1.75 1.75 0 0 1 .466-.756L14.476 4.963l2.787-2.786zm-2.275 4.371-10.28 10.3a.25.25 0 0 0-.067.108l-1.264 4.154 4.177-1.271a.25.25 0 0 0 .1-.059l10.273-10.291-2.94-2.94zm4.969.386-2.587-2.587L18.59 3.135l2.587 2.587-1.217 1.212z"
-            /   | Profile
-            / hr.border.border-zinc-200.w-full.border-0.25
+              hr.border.border-zinc-200.w-full.border-0.25
+            = link_to customer_path(current_customer), class: "flex flex-row justify-start items-center gap-2 text-zinc-600 text-sm font-semibold cursor-pointer pl-3 pr-4" do
+              svg.w-4.h-4 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                path d="M17.263 2.177a1.75 1.75 0 0 1 2.474 0l2.586 2.586a1.75 1.75 0 0 1 0 2.474L19.53 10.03l-.012.013L8.69 20.378a1.75 1.75 0 0 1-.699.409l-5.523 1.68a.75.75 0 0 1-.935-.935l1.673-5.5a1.75 1.75 0 0 1 .466-.756L14.476 4.963l2.787-2.786zm-2.275 4.371-10.28 10.3a.25.25 0 0 0-.067.108l-1.264 4.154 4.177-1.271a.25.25 0 0 0 .1-.059l10.273-10.291-2.94-2.94zm4.969.386-2.587-2.587L18.59 3.135l2.587 2.587-1.217 1.212z"
+              | Profile
+            hr.border.border-zinc-200.w-full.border-0.25
             = button_to destroy_customer_session_path, method: :delete, class: "flex flex-row justify-start items-center gap-2 text-red-600 text-sm font-semibold cursor-pointer pl-3 pr-4" do
               svg.w-4.h-4 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                 path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM12 14c-4.41 0-8 2.24-8 5v2h16v-2c0-2.76-3.59-5-8-5z")
