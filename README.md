@@ -27,7 +27,7 @@ Things you may want to cover:
 
 [x] Change DB from SQLite to PostgreSQL
 [x] Scaffold Post Resource
-[] Create Edit Profile Page
+[X] Create Edit Profile Page
 [] Reimplement UI Designs from Old SocMed App
 [] Scaffold Comment Resource
 [] Scaffold Like Controller

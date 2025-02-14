@@ -6,10 +6,10 @@ aside class= "bg-white text-white h-full w-64 p-6 border border-zinc-300 shadow 
         path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
       span Dashboard
 
-    = link_to admin_users_path, class: "flex gap-2 items-center text-black font-semibold p-2 rounded-xl #{current_page?(admin_users_path) ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white' : 'hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 hover:text-white'} transition-colors" do
+    = link_to admin_customers_path, class: "flex gap-2 items-center text-black font-semibold p-2 rounded-xl #{current_page?(admin_customers_path) ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white' : 'hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 hover:text-white'} transition-colors" do
       svg.h-6.w-6.mb-1.ml-1 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
         path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-      span Users
+      span Customers
 
     = link_to admin_posts_path, class: "flex gap-2 items-center text-black font-semibold p-2 rounded-xl #{current_page?(admin_posts_path) ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white' : 'hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 hover:text-white'} transition-colors" do
       svg.h-6.w-6.mb-1.ml-1 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -23,7 +23,7 @@ nav.fixed.bottom-0.left-0.w-full.bg-white.border-t.border-zinc-300.p-4.sm:hidden
         path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
       span.text-xs Dashboard
 
-    = link_to admin_users_path, class: "flex flex-col items-center text-black #{current_page?(admin_users_path) ? 'text-blue-600' : ''}" do
+    = link_to admin_customers_path, class: "flex flex-col items-center text-black #{current_page?(admin_customers_path) ? 'text-blue-600' : ''}" do
       svg.h-6.w-6.mb-1 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
         path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
       span.text-xs Users

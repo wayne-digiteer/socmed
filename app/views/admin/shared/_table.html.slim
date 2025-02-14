@@ -1,0 +1,36 @@
+/ app/views/admin/shared/_table.html.slim
+.overflow-x-auto
+  table.min-w-full.divide-y.divide-zinc-300
+    thead.bg-zinc-50
+      tr
+        - collection.klass.display_columns.each do |key, config|
+          th.px-6.py-3.text-left.text-xs.font-medium.text-zinc-500.uppercase.tracking-wider
+            .flex.items-center.gap-2
+              = config[:label]
+              - if config[:sortable]
+                .flex.flex-col.items-center.justify-center
+                  = link_to url_for(sort_column: key, sort_direction: 'asc', search: params[:search]),
+                    class: "text-zinc-400 hover:text-zinc-600 text-[10px]",
+                    data: { turbo_frame: "#{dom_id(collection.klass)}_table" } do
+                    | ▲
+                  = link_to url_for(sort_column: key, sort_direction: 'desc', search: params[:search]),
+                    class: "text-zinc-400 hover:text-zinc-600 text-[10px]",
+                    data: { turbo_frame: "#{dom_id(collection.klass)}_table" } do
+                    | ▼
+        th.px-6.py-3.text-left.text-xs.font-medium.text-zinc-500.uppercase.tracking-wider Actions
+
+    tbody.divide-y.divide-zinc-200.bg-white
+      - if collection.any?
+        - collection.each do |record|
+          tr.hover:bg-zinc-50
+            - collection.klass.display_columns.each do |key, config|
+              td.px-6.py-4.whitespace-nowrap.text-sm.text-zinc-900 = config[:format].call(record)
+            td.px-6.py-4.whitespace-nowrap.text-sm.text-zinc-500
+              = yield(record)
+      - else
+        tr
+          td colspan="#{collection.klass.display_columns.size + 1}" class="px-6 py-4 text-sm text-zinc-500"
+            | No #{collection.klass.model_name.human.pluralize.downcase} found.
+
+  .px-4.py-3.bg-white.border-t.border-zinc-200.sm:px-6
+    == pagy_nav(pagy, anchor_string: 'data-turbo-action="advance"')

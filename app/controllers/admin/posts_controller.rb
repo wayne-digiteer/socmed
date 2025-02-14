@@ -1,34 +1,37 @@
+# app/controllers/admin/posts_controller.rb
 module Admin
   class PostsController < Admin::BaseController
     before_action :set_post, only: [ :show, :edit, :update, :destroy ]
 
     def index
-      posts = Post.all
+      posts = apply_search_sort(Post.all)
 
-      # Apply global search
-      if params[:search].present?
-        posts = posts.search_all_columns(params[:search])
-      end
+      # # Apply global search
+      # if params[:search].present?
+      #   posts = posts.search_all_columns(params[:search])
+      # end
 
-      # Apply sorting
-      if params[:sort_column].present? && params[:sort_direction].present?
-        column = params[:sort_column]
-        direction = params[:sort_direction]
+      # # Apply sorting
+      # if params[:sort_column].present? && params[:sort_direction].present?
+      #   column = params[:sort_column]
+      #   direction = params[:sort_direction]
 
-        posts = case column
-        when "username"
-          posts.joins(:customer).order("customers.username #{direction}")
-        else
-          posts.order("#{column} #{direction}")
-        end
-      end
+      #   posts = case column
+      #   when "username"
+      #     posts.joins(:customer).order("customers.username #{direction}")
+      #   else
+      #     posts.order("#{column} #{direction}")
+      #   end
+      # end
 
       @pagy, @posts = pagy(posts)
 
       respond_to do |format|
         format.html
         format.turbo_stream do
-          render turbo_stream: turbo_stream.replace("posts", partial: "admin/posts/table", locals: { posts: @posts })
+          render turbo_stream: turbo_stream.replace("posts_table",
+            partial: "table",
+            locals: { posts: @posts })
         end
       end
     end

@@ -1,23 +1,29 @@
-main.flex-1.p-8.overflow-hidden
-  .max-w-7xl.mx-auto.overflow-hidden.p-1
-    = render "admin/components/greetings"
+/ app/views/admin/posts/index.html.slim
+= render "admin/shared/index",
+  collection: @posts,
+  pagy: @pagy,
+  search_placeholder: "Search posts..."
 
-    .overflow-hidden.shadow.ring-1.ring-zinc-300.ring-opacity-5.rounded-lg.bg-white
-      div data-controller="debounce" data-debounce-delay-value="500"
-        = form_with url: admin_posts_path,
-          method: :get,
-          data: { debounce_target: "form", turbo_frame: "posts_table", turbo_action: "advance" },
-          class: "p-4 border-b border-zinc-200 bg-zinc-50" do |f|
-          .flex.items-end.justify-end.gap-4
-            .flex-1.items-end.justify-end.gap-4
-              = f.text_field :search,
-                data: { action: "input->debounce#search" },
-                placeholder: "Search all columns",
-                class: "block w-full md:w-72 h-10 pl-3 pr-3 rounded-md border border-zinc-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+/ main.flex-1.p-8.overflow-hidden
+/   .max-w-7xl.mx-auto.overflow-hidden.p-1
+/     = render "admin/components/greetings"
 
-            = hidden_field_tag :sort_column, params[:sort_column] if params[:sort_column].present?
-            = hidden_field_tag :sort_direction, params[:sort_direction] if params[:sort_direction].present?
+/     .overflow-hidden.shadow.ring-1.ring-zinc-300.ring-opacity-5.rounded-lg.bg-white
+/       div data-controller="debounce" data-debounce-delay-value="500"
+/         = form_with url: admin_posts_path,
+/           method: :get,
+/           data: { debounce_target: "form", turbo_frame: "posts_table", turbo_action: "advance" },
+/           class: "p-4 border-b border-zinc-200 bg-zinc-50" do |f|
+/           .flex.items-end.justify-end.gap-4
+/             .flex-1.items-end.justify-end.gap-4
+/               = f.text_field :search,
+/                 data: { action: "input->debounce#search" },
+/                 placeholder: "Search all columns",
+/                 class: "block w-full md:w-72 h-10 pl-3 pr-3 rounded-md border border-zinc-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+
+/             = hidden_field_tag :sort_column, params[:sort_column] if params[:sort_column].present?
+/             = hidden_field_tag :sort_direction, params[:sort_direction] if params[:sort_direction].present?
 
 
-        = turbo_frame_tag "posts_table" do
-          = render "table", posts: @posts
+/         = turbo_frame_tag "posts_table" do
+/           = render "table", posts: @posts

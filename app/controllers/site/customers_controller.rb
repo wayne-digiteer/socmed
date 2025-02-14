@@ -1,3 +1,4 @@
+# app/controllers/site/customers_controller.rb
 module Site
   class CustomersController < ApplicationController
     before_action :set_customer

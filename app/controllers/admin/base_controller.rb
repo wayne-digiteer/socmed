@@ -1,6 +1,7 @@
 # app/controllers/admin/base_controller.rb
 module Admin
   class BaseController < ApplicationController
+    include SearchableSortableController
     before_action :authenticate_user!
 
     private
