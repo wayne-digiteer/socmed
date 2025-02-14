@@ -76,14 +76,17 @@ module Admin
       respond_to do |format|
         format.html { redirect_to admin_posts_path, notice: "Post was successfully destroyed." }
         format.turbo_stream do
-          render turbo_stream: [
-            turbo_stream.update("posts_table",
-              partial: "table",
-              locals: { posts: Post.all, notice: "Post was successfully destroyed." }),
-            turbo_stream.remove("modal")
-          ]
+          @pagy, posts = pagy(Post.all, request_path: "/admin/posts")
+
+          # Check if we need to go to previous page
+          if posts.empty? && params[:page].to_i > 1
+            @pagy, posts = pagy(Post.all, page: params[:page].to_i - 1)
+          end
+
+          render turbo_stream: turbo_stream.replace("posts_table",
+            partial: "table",
+            locals: { posts: posts })
         end
-        format.json { head :no_content }
       end
     end
 
