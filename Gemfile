@@ -67,3 +67,5 @@ gem "tailwindcss-rails", "~> 4.0"
 gem "slim-rails", "~> 3.7"
 
 gem "devise"
+
+gem "pagy", "~> 9.3"

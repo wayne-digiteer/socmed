@@ -3,7 +3,7 @@ module Admin
     before_action :set_post, only: [ :show, :edit, :update, :destroy ]
 
     def index
-      @posts = Post.all
+      @pagy, @posts = pagy(Post.all)
 
       # Apply global search
       if params[:search].present?
@@ -73,6 +73,14 @@ module Admin
 
       respond_to do |format|
         format.html { redirect_to admin_posts_path, notice: "Post was successfully destroyed." }
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.update("posts_table",
+              partial: "table",
+              locals: { posts: Post.all, notice: "Post was successfully destroyed." }),
+            turbo_stream.remove("modal")
+          ]
+        end
         format.json { head :no_content }
       end
     end
