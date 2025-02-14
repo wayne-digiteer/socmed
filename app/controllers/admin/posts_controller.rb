@@ -78,11 +78,6 @@ module Admin
         format.turbo_stream do
           @pagy, posts = pagy(Post.all, request_path: "/admin/posts")
 
-          # Check if we need to go to previous page
-          if posts.empty? && params[:page].to_i > 1
-            @pagy, posts = pagy(Post.all, page: params[:page].to_i - 1)
-          end
-
           render turbo_stream: turbo_stream.replace("posts_table",
             partial: "table",
             locals: { posts: posts })
