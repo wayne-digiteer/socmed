@@ -3,11 +3,11 @@ module Admin
     before_action :set_post, only: [ :show, :edit, :update, :destroy ]
 
     def index
-      @pagy, @posts = pagy(Post.all)
+      posts = Post.all
 
       # Apply global search
       if params[:search].present?
-        @posts = @posts.search_all_columns(params[:search])
+        posts = posts.search_all_columns(params[:search])
       end
 
       # Apply sorting
@@ -15,13 +15,15 @@ module Admin
         column = params[:sort_column]
         direction = params[:sort_direction]
 
-        @posts = case column
+        posts = case column
         when "username"
-          @posts.joins(:user).order("customers.username #{direction}")
+          posts.joins(:customer).order("customers.username #{direction}")
         else
-          @posts.order("#{column} #{direction}")
+          posts.order("#{column} #{direction}")
         end
       end
+
+      @pagy, @posts = pagy(posts)
 
       respond_to do |format|
         format.html
