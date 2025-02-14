@@ -9,14 +9,16 @@
               = config[:label]
               - if config[:sortable]
                 .flex.flex-col.items-center.justify-center
-                  = link_to url_for(sort_column: key, sort_direction: 'asc', search: params[:search]),
+                  = link_to url_for(params.permit(:search).merge(sort_column: key, sort_direction: 'asc')),
                     class: "text-zinc-400 hover:text-zinc-600 text-[10px]",
-                    data: { turbo_frame: "#{dom_id(collection.klass)}_table" } do
+                    data: { turbo_frame: "#{dom_id(collection.klass)}_table", turbo_action: "replace" } do
                     | ▲
-                  = link_to url_for(sort_column: key, sort_direction: 'desc', search: params[:search]),
+
+                  = link_to url_for(params.permit(:search).merge(sort_column: key, sort_direction: 'desc')),
                     class: "text-zinc-400 hover:text-zinc-600 text-[10px]",
-                    data: { turbo_frame: "#{dom_id(collection.klass)}_table" } do
+                    data: { turbo_frame: "#{dom_id(collection.klass)}_table", turbo_action: "replace" } do
                     | ▼
+
         th.px-6.py-3.text-left.text-xs.font-medium.text-zinc-500.uppercase.tracking-wider Actions
 
     tbody.divide-y.divide-zinc-200.bg-white

@@ -7,14 +7,9 @@ module Site
   # GET /posts or /posts.json
   def index
     if params[:tab] == "featured"
-      @posts = Post.where(featured: true)
-                   .where("published_date <= ?", DateTime.now)
-                   .order(published_date: :desc)
-                   .limit(5)
+      @posts = Post.where(featured: true).where("published_date <= ?", DateTime.now).order(published_date: :desc).limit(5)
     else
-      @posts = Post.where(active: true)
-                   .where("published_date <= ?", DateTime.now)
-                   .order(published_date: :desc)
+      @posts = Post.where(active: true).where("published_date <= ?", DateTime.now).order(published_date: :desc)
     end
   end
 
