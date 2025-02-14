@@ -18,5 +18,7 @@ devise_for :users,
   }
 
 namespace :admin do
-  resources :post
+  get "/", to: "dashboard#index", as: :dashboard
+  resources :posts
+  resources :users
 end

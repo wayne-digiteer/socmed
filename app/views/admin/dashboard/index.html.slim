@@ -1,0 +1,12 @@
+/ Main content area
+main.flex-1.p-8.overflow-hidden
+  .max-w-7xl.mx-auto.overflow-hidden.p-1
+    / Header section
+    .mb-8
+      h1.text-3xl.font-bold.text-zinc-900 Dashboard
+      p.text-zinc-600 Welcome to your admin panel
+
+    / Dashboard content
+    #stats class=" grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+      - @stats.each do |stat|
+        = render 'admin/components/stat_card', stat: stat

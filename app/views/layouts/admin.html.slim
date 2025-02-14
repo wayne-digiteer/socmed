@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    title
+      = content_for(:title) || "Social Media"
+    meta[name="viewport" content="width=device-width,initial-scale=1"]
+    meta[name="apple-mobile-web-app-capable" content="yes"]
+    meta[name="mobile-web-app-capable" content="yes"]
+    = csrf_meta_tags
+    = csp_meta_tag
+    = yield :head
+    link[rel="icon" href="/icon.png" type="image/png"]
+    link[rel="icon" href="/icon.svg" type="image/svg+xml"]
+    link[rel="apple-touch-icon" href="/icon.png"]
+    = stylesheet_link_tag :app, "data-turbo-track": "reload"
+    = javascript_importmap_tags
+  body.flex.flex-col.justify-center.items-center.bg-gray-100.text-gray-900.space-y-1.pb-8
+    header.w-full.m-0
+      == render "components/navbar"
+      = render "components/alerts"
+    .flex.flex-row.items-start.justify-start.min-h-screen.bg-gray-100.w-full
+      = render 'admin/components/sidebar'
+      = yield
+    = turbo_frame_tag "modal"

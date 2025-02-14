@@ -1,0 +1,12 @@
+/ app/views/admin/posts/_modal.html.slim
+div data-controller="modal" class="fixed inset-0 z-50 overflow-y-auto"
+  .fixed.inset-0.bg-zinc-500.opacity-70 data-modal-target="background" data-action="click->modal#close"
+  .fixed.inset-0.z-50.overflow-y-auto
+    .flex.min-h-full.items-end.justify-center.p-4.text-center.sm:items-center.sm:p-0
+      div data-modal-target="content" class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"
+        .absolute.right-0.top-0.hidden.pr-4.pt-4.sm:block
+          button type="button" class="rounded-md bg-white text-zinc-400 hover:text-zinc-500 focus:outline-none" data-action="click->modal#close"
+            span.sr-only Close
+            svg.h-6.w-6 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+              path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"
+        = yield

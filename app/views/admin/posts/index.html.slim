@@ -1,0 +1,7 @@
+main.flex-1.p-8.overflow-hidden
+  .max-w-7xl.mx-auto.overflow-hidden.p-1
+    = render "admin/components/greetings"
+
+    .overflow-hidden.shadow.ring-1.ring-zinc-300.ring-opacity-5.rounded-lg.bg-white
+      = turbo_frame_tag "posts_table" do
+        = render "table", posts: @posts
