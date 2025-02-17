@@ -27,8 +27,8 @@ Things you may want to cover:
 
 [x] Change DB from SQLite to PostgreSQL
 [x] Scaffold Post Resource
-[X] Create Edit Profile Page
-[] Reimplement UI Designs from Old SocMed App
+[x] Create Edit Profile Page
+[x] Reimplement UI Designs from Old SocMed App
 [] Scaffold Comment Resource
 [] Scaffold Like Controller
 [] Study Turbo-Rails
